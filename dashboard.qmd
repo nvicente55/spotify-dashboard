@@ -21,9 +21,9 @@ library(ggthemes)
 
 # Row {height="50%"} 
 ```{r}
-setwd("D:/Quarto website/spotify-dashboard")
+# setwd("D:/Quarto website/spotify-dashboard")
 
-fcs<-read.dta("dwelling_0503.dta")
+fcs<-read.dta("D:/Quarto website/spotify-dashboard/dwelling_0503.dta")
 cross_tab <- xtabs(~ pr_06 + pr_12, na.rm=FALSE,data = fcs)
 
 print(cross_tab)
