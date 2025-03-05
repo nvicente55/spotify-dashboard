@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "spotify-dashboard",
+    "title": "FCS 2025 Dashboard",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2",
+    "text": "FCS (Fish consumption survey) is co-implemented by the National Institute of Statistics (INETL), Ministry of Agriculture, Forestry and Fishery (MAFF), and FAO. This survey is the second sub-round after its precedented sub-round 1, that was conducted during the dry-season. From the previous sub-round, it is found that the average percapita fish consumption was 8.4 kg per capita per year.\n\nprint(\"Welcome to the INETL Dashboard\")\n\n[1] \"Welcome to the INETL Dashboard\"",
     "crumbs": [
       "Home"
     ]
@@ -14,7 +14,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2",
+    "text": "About this site\n\nprint(\"no content to be displayed\")\n\n[1] \"no content to be displayed\"",
     "crumbs": [
       "about"
     ]
