@@ -184,6 +184,35 @@
       "Repository": "CRAN",
       "Encoding": "UTF-8"
     },
+    "Rcpp": {
+      "Package": "Rcpp",
+      "Version": "1.0.14",
+      "Source": "Repository",
+      "Title": "Seamless R and C++ Integration",
+      "Date": "2025-01-11",
+      "Authors@R": "c(person(\"Dirk\", \"Eddelbuettel\", role = c(\"aut\", \"cre\"), email = \"edd@debian.org\", comment = c(ORCID = \"0000-0001-6419-907X\")), person(\"Romain\", \"Francois\", role = \"aut\", comment = c(ORCID = \"0000-0002-2444-4226\")), person(\"JJ\", \"Allaire\", role = \"aut\", comment = c(ORCID = \"0000-0003-0174-9868\")), person(\"Kevin\", \"Ushey\", role = \"aut\", comment = c(ORCID = \"0000-0003-2880-7407\")), person(\"Qiang\", \"Kou\", role = \"aut\", comment = c(ORCID = \"0000-0001-6786-5453\")), person(\"Nathan\", \"Russell\", role = \"aut\"), person(\"Iñaki\", \"Ucar\", role = \"aut\", comment = c(ORCID = \"0000-0001-6403-5550\")), person(\"Doug\", \"Bates\", role = \"aut\", comment = c(ORCID = \"0000-0001-8316-9503\")), person(\"John\", \"Chambers\", role = \"aut\"))",
+      "Description": "The 'Rcpp' package provides R functions as well as C++ classes which offer a seamless integration of R and C++. Many R data types and objects can be mapped back and forth to C++ equivalents which facilitates both writing of new code as well as easier integration of third-party libraries. Documentation about 'Rcpp' is provided by several vignettes included in this package, via the 'Rcpp Gallery' site at <https://gallery.rcpp.org>, the paper by Eddelbuettel and Francois (2011, <doi:10.18637/jss.v040.i08>), the book by Eddelbuettel (2013, <doi:10.1007/978-1-4614-6868-4>) and the paper by Eddelbuettel and Balamuta (2018, <doi:10.1080/00031305.2017.1375990>); see 'citation(\"Rcpp\")' for details.",
+      "Imports": [
+        "methods",
+        "utils"
+      ],
+      "Suggests": [
+        "tinytest",
+        "inline",
+        "rbenchmark",
+        "pkgKitten (>= 0.1.2)"
+      ],
+      "URL": "https://www.rcpp.org, https://dirk.eddelbuettel.com/code/rcpp.html, https://github.com/RcppCore/Rcpp",
+      "License": "GPL (>= 2)",
+      "BugReports": "https://github.com/RcppCore/Rcpp/issues",
+      "MailingList": "rcpp-devel@lists.r-forge.r-project.org",
+      "RoxygenNote": "6.1.1",
+      "Encoding": "UTF-8",
+      "NeedsCompilation": "yes",
+      "Author": "Dirk Eddelbuettel [aut, cre] (<https://orcid.org/0000-0001-6419-907X>), Romain Francois [aut] (<https://orcid.org/0000-0002-2444-4226>), JJ Allaire [aut] (<https://orcid.org/0000-0003-0174-9868>), Kevin Ushey [aut] (<https://orcid.org/0000-0003-2880-7407>), Qiang Kou [aut] (<https://orcid.org/0000-0001-6786-5453>), Nathan Russell [aut], Iñaki Ucar [aut] (<https://orcid.org/0000-0001-6403-5550>), Doug Bates [aut] (<https://orcid.org/0000-0001-8316-9503>), John Chambers [aut]",
+      "Maintainer": "Dirk Eddelbuettel <edd@debian.org>",
+      "Repository": "CRAN"
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.2.1",
@@ -2927,6 +2956,34 @@
       "NeedsCompilation": "yes",
       "Author": "Hadley Wickham [aut], Jim Hester [aut], Romain Francois [ctb], Jennifer Bryan [aut, cre] (<https://orcid.org/0000-0002-6983-2759>), Shelby Bearrows [ctb], Posit Software, PBC [cph, fnd], https://github.com/mandreyel/ [cph] (mio library), Jukka Jylänki [ctb, cph] (grisu3 implementation), Mikkel Jørgensen [ctb, cph] (grisu3 implementation)",
       "Maintainer": "Jennifer Bryan <jenny@posit.co>",
+      "Repository": "CRAN"
+    },
+    "readstata13": {
+      "Package": "readstata13",
+      "Version": "0.10.1",
+      "Source": "Repository",
+      "Type": "Package",
+      "Title": "Import 'Stata' Data Files",
+      "Authors@R": "c( person(\"Jan Marvin\", \"Garbuszus\", email = \"jan.garbuszus@ruhr-uni-bochum.de\", role = c(\"aut\")), person(\"Sebastian\", \"Jeworutzki\", email=\"Sebastian.Jeworutzki@ruhr-uni-bochum.de\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-2671-5253\")), person(\"R Core Team\", role=\"cph\"), person(\"Magnus Thor\", \"Torfason\", role=\"ctb\"), person(\"Luke M.\", \"Olson\", role=\"ctb\"), person(\"Giovanni\", \"Righi\", role=\"ctb\"), person(\"Kevin\", \"Jin\", role=\"ctb\") )",
+      "Description": "Function to read and write the 'Stata' file format.",
+      "URL": "https://github.com/sjewo/readstata13",
+      "BugReports": "https://github.com/sjewo/readstata13/issues",
+      "License": "GPL-2 | file LICENSE",
+      "Imports": [
+        "Rcpp (>= 0.11.5)"
+      ],
+      "LinkingTo": [
+        "Rcpp"
+      ],
+      "ByteCompile": "yes",
+      "Suggests": [
+        "testthat"
+      ],
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.2.3",
+      "NeedsCompilation": "yes",
+      "Author": "Jan Marvin Garbuszus [aut], Sebastian Jeworutzki [aut, cre] (<https://orcid.org/0000-0002-2671-5253>), R Core Team [cph], Magnus Thor Torfason [ctb], Luke M. Olson [ctb], Giovanni Righi [ctb], Kevin Jin [ctb]",
+      "Maintainer": "Sebastian Jeworutzki <Sebastian.Jeworutzki@ruhr-uni-bochum.de>",
       "Repository": "CRAN"
     },
     "readxl": {
