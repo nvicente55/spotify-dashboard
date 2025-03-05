@@ -30,7 +30,7 @@ cross_tab <- xtabs(~ pr_06 + pr_12, na.rm=FALSE,data = fcs)
 print(cross_tab)
 ```
 # Row {height="70%"}
-```{r}
+```{r, computeindicators}
 
 targets <- data.frame(
   dw_01 = c("Aileu", "Ainaro", "Atauro", "Baucau","Bobonaro","Covalima","Dili", "Ermera","Lautém","Liquica", "Manatuto","Manufahi","Oecusse","Viqueque"),
