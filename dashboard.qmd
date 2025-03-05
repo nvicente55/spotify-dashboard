@@ -14,7 +14,7 @@ format:
 library(tidyverse)
 library(foreign)
 library(dplyr)
-
+library(readstata13)
 library(ggplot2)
 library(ggthemes)
 ```
@@ -23,7 +23,7 @@ library(ggthemes)
 ```{r}
 # setwd("D:/Quarto website/spotify-dashboard")
 
-fcs<-read.dta("D:/Quarto website/spotify-dashboard/dwelling_0503.dta")
+fcs<-read.dta13("data/dwelling_0403.dta")
 cross_tab <- xtabs(~ pr_06 + pr_12, na.rm=FALSE,data = fcs)
 
 print(cross_tab)
