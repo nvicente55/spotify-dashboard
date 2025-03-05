@@ -23,7 +23,8 @@ library(ggthemes)
 ```{r}
 # setwd("D:/Quarto website/spotify-dashboard")
 
-fcs<-read.dta13("data/dwelling_0403.dta")
+fcs <- read.dta13("data/dwelling_0503.dta")
+
 cross_tab <- xtabs(~ pr_06 + pr_12, na.rm=FALSE,data = fcs)
 
 print(cross_tab)
