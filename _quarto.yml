@@ -2,19 +2,18 @@ project:
   type: website
 
 website:
-  title: "spotify-dashboard"
-  navbar:
-    left:
+  title: "spotify dashboard"
+  sidebar:
+    contents:
       - href: index.qmd
         text: Home
-      - about.qmd
-
+      - href: about.qmd
+        text: about
+      - href: dashboard.qmd
+        text: Dahsboard
 format:
   html:
-    theme:
-      - cosmo
-      - brand
-    css: styles.css
+    theme: [cosmo, custom.scss]
     toc: true
 
 
