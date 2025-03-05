@@ -1,72 +1,31 @@
 ---
-title: "Custom light theme"
+title: "Today's Top Hits"
 format:
   dashboard:
-    theme: "style/custom-light.scss"
-resource_files:
-- olympics.csv
+    logo: "images/logo.png"
+    orientation: columns
 ---
 
-```{r}
-library(ggplot2)
-library(dplyr)
+## Column{width="35%"}
+
+Placeholder text for column 1
+
+```{r, loadpackages}
+#| echo: false
+#| include: false
+library(tidyverse)
 ```
 
-## Value boxes {height="25%"}
-
-```{r}
-#| label: calculate-values
-lowest_mileage_cty <- mpg |>
-  filter(cty == min(cty)) |>
-  distinct(cty) |>
-  pull(cty)
-
-highest_mileage_cty <- mpg |>
-  filter(cty == max(cty)) |>
-  distinct(cty) |>
-  pull(cty)
-  
-rounded_mean_city_mileage <- mpg |>
-  summarize(round(mean(cty), 2)) |>
-  pull()
+```{r, printstarwars}
+head(starwars)
 ```
 
-```{r}
-#| content: valuebox
-#| title: "Least efficient"
-#| icon: fuel-pump-fill
-#| color: danger
-list(
-  value = paste(lowest_mileage_cty, "mpg")
-)
-```
+## Column {width="65%"}
 
-```{r}
-#| content: valuebox
-#| title: "Most efficient"
-list(
-  icon = "fuel-pump",
-  color = "success",
-  value = paste(highest_mileage_cty, "mpg")
-)
-```
+# Row {height="10%"}
 
-::: {.valuebox icon="fuel-pump" color="secondary"}
-Average city mileage
+# Row {height="70%"}
 
-`{r} rounded_mean_city_mileage` mpg
-:::
+# Row {height="20%"}
 
-## Plots {height="75%"}
 
-```{r}
-#| title: Highway vs. city mileage
-ggplot(mpg, aes(x = cty, y = hwy)) +
-  geom_point()
-```
-
-```{r}
-#| title: Drive types
-ggplot(mpg, aes(x = drv)) +
-  geom_bar()
-```
