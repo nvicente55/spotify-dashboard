@@ -1,30 +1,60 @@
 ---
-title: "Today's Top Hits"
+title: "Data Collection progress"
 format:
   dashboard:
     logo: "images/logo.png"
     orientation: columns
 ---
 
-## Column{width="35%"}
-
-Placeholder text for column 1
+## Column{width="100%"}
 
 ```{r, loadpackages}
 #| echo: false
 #| include: false
 library(tidyverse)
+library(foreign)
+library(dplyr)
+
+library(ggplot2)
+library(ggthemes)
 ```
 
-```{r, printstarwars}
-head(starwars)
+# Row {height="50%"} 
+```{r}
+setwd("D:/Quarto website/spotify-dashboard")
+
+fcs<-read.dta("dwelling_0503.dta")
+cross_tab <- xtabs(~ pr_06 + pr_12, na.rm=FALSE,data = fcs)
+
+print(cross_tab)
 ```
-
-## Column {width="65%"}
-
-# Row {height="10%"}
-
 # Row {height="70%"}
+```{r}
+
+targets <- data.frame(
+  dw_01 = c("Aileu", "Ainaro", "Atauro", "Baucau","Bobonaro","Covalima","Dili", "Ermera","Lautém","Liquica", "Manatuto","Manufahi","Oecusse","Viqueque"),
+  target = c(102, 120, 24, 204,192,174,258,228,150,114,126,108,138,162))
+  
+fcs<- fcs %>%
+  left_join(targets, by = "dw_01")
+
+counts<-fcs %>%
+  group_by(dw_01) %>%
+  summarise(count = n())
+
+coverage <- counts %>%
+  left_join(targets, by = "dw_01") %>%
+  mutate(percentage_coverage = (count / target) * 100)
+
+
+
+p<-ggplot(coverage, aes(fill = dw_01, x = dw_01, y =percentage_coverage)) +
+              geom_bar(stat = "identity", position = "dodge") +
+              labs(fill = "Municipality", x = "Interview Status", y = "Percentage Coverage") +
+              theme_minimal()
+
+print(p + theme_tufte() + scale_fill_tableau())
+```
 
 # Row {height="20%"}
 
