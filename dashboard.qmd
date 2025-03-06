@@ -11,25 +11,48 @@ format:
 ```{r, loadpackages}
 #| echo: false
 #| include: false
+
 library(tidyverse)
 library(foreign)
 library(dplyr)
 library(readstata13)
 library(ggplot2)
 library(ggthemes)
+library(plotly)
+library(reactable)
+library(leaflet)
+
 ```
 
-# Row {height="50%"} 
-```{r}
+# Tabela Progresu tuir Estatutu Intervista {height="50%"} 
+```{r,echo=FALSE}
 # setwd("D:/Quarto website/spotify-dashboard")
 
 fcs <- read.dta13("data/dwelling_0503.dta")
 
-cross_tab <- xtabs(~ pr_06 + pr_12, na.rm=FALSE,data = fcs)
+targets_team <- data.frame(
+  pr_06 = c("T01","T02","T03","T04","T05","T06","T07"),
+  target_team = c(300,300,300,300,300,300,300))
 
-print(cross_tab)
+fcs<- fcs %>%
+  left_join(targets_team, by = "pr_06")
+
+counts_team<-fcs %>%
+  group_by(pr_06) %>%
+  summarise(count = n())
+
+coverage_team <- counts_team %>%
+  left_join(targets_team, by = "pr_06") %>%
+  mutate(`% Coverage by Team` = round((count / target_team) * 100, digits = 1))
+
+coverage_team <- coverage_team %>% 
+  rename( Ekipa = "pr_06")%>%
+  rename( `Total uma-kain vizita` = "count") %>%
+  rename(`Tarjetu amostra uma-kain`="target_team")
+
+reactable(coverage_team)
 ```
-# Row {height="70%"}
+# Grafiku Progressu Tuir Munisipiu {height="70%"}
 ```{r, computeindicators}
 
 targets <- data.frame(
@@ -48,15 +71,36 @@ coverage <- counts %>%
   mutate(percentage_coverage = (count / target) * 100)
 
 
-
 p<-ggplot(coverage, aes(fill = dw_01, x = dw_01, y =percentage_coverage)) +
               geom_bar(stat = "identity", position = "dodge") +
-              labs(fill = "Municipality", x = "Interview Status", y = "Percentage Coverage") +
+              labs(fill = "Municipality", x = "Municipality", y = "Percentage Coverage") +
               theme_minimal()
 
-print(p + theme_tufte() + scale_fill_tableau())
+p<-p + guides(color = "legend") + theme(legend.position = "bottom")
+ggplotly(p)
 ```
 
-# Row {height="20%"}
+# Mapa {height="20%"}
+
+```{r}
+# Filter out rows with '99' in latitude or longitude
+filtered_fcs <- fcs[!grepl('99', paste(fcs$pr_09, fcs$pr_10)), ]
+
+# Create a leaflet map
+map <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addCircleMarkers(
+    lng = filtered_fcs$pr_10,
+    lat = filtered_fcs$pr_09,
+    color = 'blue',
+    radius = 5,
+    popup = paste("Lat:", filtered_fcs$pr_09, "Lon:", filtered_fcs$pr_10)
+  )
+
+# Print the map
+map
+
+```
+
 
 
