@@ -20,8 +20,9 @@ library(ggplot2)
 library(ggthemes)
 library(plotly)
 library(reactable)
-# library(leaflet)
-# library(sf)
+library(leaflet)
+library(sf)
+library(curl)
 #this is some codes to
 ```
 
@@ -115,27 +116,27 @@ ggplotly(p)
 
 # Mapa {height="20%"}
 
-# ```{r}
+```{r}
 # # Filter out rows with '99' in latitude or longitude
-# filtered_fcs <- fcs[!grepl('99', paste(fcs$pr_09, fcs$pr_10)), ]
-# 
+filtered_fcs <- fcs[!grepl('99', paste(fcs$pr_09, fcs$pr_10)), ]
+
 # # Convert to sf object
-# filtered_fcs_sf <- st_as_sf(filtered_fcs, coords = c("pr_10", "pr_09"), crs = 4326)
-# 
+filtered_fcs_sf <- st_as_sf(filtered_fcs, coords = c("pr_10", "pr_09"), crs = 4326)
+
 # # Create a leaflet map
-# map <- leaflet() %>%
-#   addTiles() %>%  # Add default OpenStreetMap map tiles
-#   addCircleMarkers(
-#     data = filtered_fcs_sf,
-#     color = 'blue',
-#     radius = 3,
-#     popup = ~paste("Ekipa:", pr_06, "  Kodigu Enumerador:", pr_03)
-#   )
-# 
+map <- leaflet() %>%
+addTiles() %>%  # Add default OpenStreetMap map tiles
+addCircleMarkers(
+  data = filtered_fcs_sf,
+  color = 'blue',
+  radius = 3,
+  popup = ~paste("Ekipa:", pr_06, "  Kodigu Enumerador:", pr_03)
+)
+#
 # # Print the mapss
-# map
-# 
-# ```
+map
+#
+```
 
 
 
