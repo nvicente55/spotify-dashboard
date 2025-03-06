@@ -22,7 +22,7 @@ library(plotly)
 library(reactable)
 library(leaflet)
 library(sf)
-#this is some codes to sas
+#this is some codes to
 ```
 
 # Tabela Progresu tuir Estatutu Intervista {height="50%"} 
