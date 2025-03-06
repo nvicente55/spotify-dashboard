@@ -22,7 +22,7 @@ library(plotly)
 library(reactable)
 library(leaflet)
 library(sf)
-#this is tod od
+#this is 
 ```
 
 # Tabela Progresu tuir Estatutu Intervista {height="50%"} 
