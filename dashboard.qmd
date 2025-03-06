@@ -13,7 +13,7 @@ format:
 #| include: false
 
 library(tidyverse)
-# library(foreign)s
+# library(foreign)
 library(dplyr)
 library(readstata13)
 library(ggplot2)
