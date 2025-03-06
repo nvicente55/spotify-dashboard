@@ -113,7 +113,7 @@ map <- leaflet() %>%
     popup = ~paste("Ekipa:", pr_06, "  Kodigu Enumerador:", pr_03)
   )
 
-# Print the map sqsa
+# Print the map
 map
 
 ```
