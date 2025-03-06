@@ -21,7 +21,7 @@ library(ggthemes)
 library(plotly)
 library(reactable)
 library(leaflet)
-library(terra)
+library(sf)
 
 ```
 
@@ -101,21 +101,25 @@ ggplotly(p)
 # Filter out rows with '99' in latitude or longitude
 filtered_fcs <- fcs[!grepl('99', paste(fcs$pr_09, fcs$pr_10)), ]
 
+# Convert to sf object
+filtered_fcs_sf <- st_as_sf(filtered_fcs, coords = c("pr_10", "pr_09"), crs = 4326)
+
 # Create a leaflet map
 map <- leaflet() %>%
   addTiles() %>%  # Add default OpenStreetMap map tiles
   addCircleMarkers(
-    lng = filtered_fcs$pr_10,
-    lat = filtered_fcs$pr_09,
+    data = filtered_fcs_sf,
     color = 'blue',
     radius = 5,
-    popup = paste("Ekipa:", filtered_fcs$pr_06, "  Kodigu Enumerador:", filtered_fcs$pr_03)
+    popup = ~paste("Ekipa:", pr_06, "  Kodigu Enumerador:", pr_03)
   )
 
 # Print the map
 map
 
 ```
+
+
 
 
 
