@@ -115,27 +115,7 @@ ggplotly(p)
 
 # Mapa {height="20%"}
 
-```{r}
-# Filter out rows with '99' in latitude or longitude
-filtered_fcs <- fcs[!grepl('99', paste(fcs$pr_09, fcs$pr_10)), ]
 
-# Convert to sf object
-filtered_fcs_sf <- st_as_sf(filtered_fcs, coords = c("pr_10", "pr_09"), crs = 4326)
-
-# Create a leaflet map
-map <- leaflet() %>%
-  addTiles() %>%  # Add default OpenStreetMap map tiles
-  addCircleMarkers(
-    data = filtered_fcs_sf,
-    color = 'blue',
-    radius = 3,
-    popup = ~paste("Ekipa:", pr_06, "  Kodigu Enumerador:", pr_03)
-  )
-
-# Print the map
-map
-
-```
 
 
 
