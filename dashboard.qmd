@@ -21,6 +21,7 @@ library(ggthemes)
 library(plotly)
 library(reactable)
 library(leaflet)
+library(terra)
 
 ```
 
@@ -94,7 +95,7 @@ map <- leaflet() %>%
     lat = filtered_fcs$pr_09,
     color = 'blue',
     radius = 5,
-    popup = paste("Lat:", filtered_fcs$pr_09, "Lon:", filtered_fcs$pr_10)
+    popup = paste("Ekipa:", filtered_fcs$pr_06, "  Kodigu Enumerador:", filtered_fcs$pr_03)
   )
 
 # Print the map
