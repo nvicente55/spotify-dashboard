@@ -791,16 +791,16 @@
     },
     "conflicted": {
       "Package": "conflicted",
-      "Version": "1.2.0",
-      "Source": "Repository",
+      "Version": "1.2.0.9000",
+      "Source": "GitHub",
       "Title": "An Alternative Conflict Resolution Strategy",
-      "Authors@R": "c( person(\"Hadley\", \"Wickham\", , \"hadley@rstudio.com\", role = c(\"aut\", \"cre\")), person(\"RStudio\", role = c(\"cph\", \"fnd\")) )",
+      "Authors@R": "c( person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = c(\"aut\", \"cre\")), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")) )",
       "Description": "R's default conflict management system gives the most recently loaded package precedence. This can make it hard to detect conflicts, particularly when they arise because a package update creates ambiguity that did not previously exist. 'conflicted' takes a different approach, making every conflict an error and forcing you to choose which function to use.",
       "License": "MIT + file LICENSE",
       "URL": "https://conflicted.r-lib.org/, https://github.com/r-lib/conflicted",
       "BugReports": "https://github.com/r-lib/conflicted/issues",
       "Depends": [
-        "R (>= 3.2)"
+        "R (>= 3.6)"
       ],
       "Imports": [
         "cli (>= 3.4.0)",
@@ -820,11 +820,17 @@
       "Config/Needs/website": "tidyverse/tidytemplate",
       "Config/testthat/edition": "3",
       "Encoding": "UTF-8",
+      "Roxygen": "list(markdown = TRUE)",
       "RoxygenNote": "7.2.3",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "conflicted",
+      "RemoteUsername": "r-lib",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "4d759ac62d49ec77cb3d16db41e4c40ffa4cfa1e",
       "NeedsCompilation": "no",
-      "Author": "Hadley Wickham [aut, cre], RStudio [cph, fnd]",
-      "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
-      "Repository": "CRAN"
+      "Author": "Hadley Wickham [aut, cre], Posit Software, PBC [cph, fnd]",
+      "Maintainer": "Hadley Wickham <hadley@posit.co>"
     },
     "cpp11": {
       "Package": "cpp11",

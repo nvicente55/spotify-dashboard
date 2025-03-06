@@ -6,7 +6,7 @@ format:
     orientation: columns
 ---
 
-## Column{width="100%"}
+## Column{width="40%"}
 
 ```{r, loadpackages}
 #| echo: false
