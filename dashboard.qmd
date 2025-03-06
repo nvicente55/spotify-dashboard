@@ -42,16 +42,30 @@ counts_team<-fcs %>%
   group_by(pr_06) %>%
   summarise(count = n())
 
+# Create the coverage_team data frame
 coverage_team <- counts_team %>%
   left_join(targets_team, by = "pr_06") %>%
   mutate(`% Coverage by Team` = round((count / target_team) * 100, digits = 1))
 
 coverage_team <- coverage_team %>% 
-  rename( Ekipa = "pr_06")%>%
-  rename( `Total uma-kain vizita` = "count") %>%
-  rename(`Tarjetu amostra uma-kain`="target_team")
+  rename(Ekipa = "pr_06") %>%
+  rename(`Total uma-kain vizita` = "count") %>%
+  rename(`Tarjetu amostra uma-kain` = "target_team")
 
-reactable(coverage_team)
+# Define a function to color rows based on coverage
+row_style <- function(index) {
+  coverage_value <- coverage_team[index, 4]
+  if (coverage_value >= 50) {
+    list(backgroundColor = "#D4EDDA") # Light green
+  } else if (coverage_value >= 30) {
+    list(backgroundColor = "#FFF3CD") # Light yellow
+  } else {
+    list(backgroundColor = "#F8D7DA") # Light red
+  }
+}
+
+# Create the reactable with row styles
+reactable(coverage_team, rowStyle = function(index) row_style(index))
 ```
 # Grafiku Progressu Tuir Munisipiu {height="70%"}
 ```{r, computeindicators}
