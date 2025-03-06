@@ -72,7 +72,7 @@ reactable(coverage_team, rowStyle = function(index) row_style(index))
 
 ```
 ## column 2 {width50%}
-```{r}
+```{r, progressplot}
 ggplot(coverage_team, aes(x = Ekipa)) +
   geom_bar(aes(y = `Total uma-kain vizita`), stat = "identity", fill = "blue", alpha = 0.6) +
   geom_line(aes(y = `Tarjetu amostra uma-kain`), group = 1, color = "red", linewidth = 1.5) +
