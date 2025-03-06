@@ -26,6 +26,8 @@ library(sf)
 ```
 
 # Tabela Progresu tuir Estatutu Intervista {height="50%"} 
+
+## column 1 {width50%}
 ```{r,echo=FALSE}
 # setwd("D:/Quarto website/spotify-dashboard")
 
@@ -66,7 +68,23 @@ row_style <- function(index) {
 
 # Create the reactable with row styles
 reactable(coverage_team, rowStyle = function(index) row_style(index))
+
+
 ```
+## column 2 {width50%}
+```{r}
+ggplot(coverage_team, aes(x = Ekipa)) +
+  geom_bar(aes(y = `Total uma-kain vizita`), stat = "identity", fill = "blue", alpha = 0.6) +
+  geom_line(aes(y = `Tarjetu amostra uma-kain`), group = 1, color = "red", linewidth = 1.5) +
+  geom_point(aes(y = `Tarjetu amostra uma-kain`), color = "red", size = 3) +
+  labs(title = "Progress and Coverage by Team",
+       x = "Team",
+       y = "Total households") +
+  theme_minimal()
+
+```
+
+
 # Grafiku Progressu Tuir Munisipiu {height="70%"}
 ```{r, computeindicators}
 
