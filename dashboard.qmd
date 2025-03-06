@@ -22,7 +22,6 @@ library(plotly)
 library(reactable)
 library(leaflet)
 library(sf)
-
 ```
 
 # Tabela Progresu tuir Estatutu Intervista {height="50%"} 
