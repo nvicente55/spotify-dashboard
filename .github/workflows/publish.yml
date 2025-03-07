@@ -28,7 +28,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libharfbuzz-dev libfribidi-dev libfreetype6-dev pkg-config
-
+          sudo apt-get install libcurl4-openssl-dev
+          
       - name: Set PKG_CONFIG_PATH
         run: |
           echo "PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/local/lib/pkgconfig:/usr/share/pkgconfig" >> $GITHUB_ENV
