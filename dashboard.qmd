@@ -1,0 +1,142 @@
+---
+title: "Data Collection progress"
+format:
+  dashboard:
+    logo: "images/logo.png"
+    orientation: columns
+---
+
+## Column {width="40%"}
+
+```{r, loadpackages}
+#| echo: false
+#| include: false
+
+library(tidyverse)
+# library(foreign)sa
+library(dplyr)
+library(readstata13)
+library(ggplot2)
+library(ggthemes)
+library(plotly)
+library(reactable)
+library(leaflet)
+library(sf)
+library(curl)
+#this is some codes to
+```
+
+# Tabela Progresu tuir Estatutu Intervista {height="50%"}
+
+## column 1 {width50%}
+
+```{r,echo=FALSE}
+# setwd("D:/Quarto website/spotify-dashboard")
+
+fcs <- read.dta13("data/dwelling_0503.dta")
+
+targets_team <- data.frame(
+  pr_06 = c("T01","T02","T03","T04","T05","T06","T07"),
+  target_team = c(300,300,300,300,300,300,300))
+
+fcs<- fcs %>%
+  left_join(targets_team, by = "pr_06")
+
+counts_team<-fcs %>%
+  group_by(pr_06) %>%
+  summarise(count = n())
+
+# Create the coverage_team data frame
+coverage_team <- counts_team %>%
+  left_join(targets_team, by = "pr_06") %>%
+  mutate(`% Coverage by Team` = round((count / target_team) * 100, digits = 1))
+
+coverage_team <- coverage_team %>% 
+  rename(Ekipa = "pr_06") %>%
+  rename(`Total uma-kain vizita` = "count") %>%
+  rename(`Tarjetu amostra uma-kain` = "target_team")
+
+# Define a function to color rows based on coverage
+row_style <- function(index) {
+  coverage_value <- coverage_team[index, 4]
+  if (coverage_value >= 50) {
+    list(backgroundColor = "#D4EDDA") # Light green
+  } else if (coverage_value >= 30) {
+    list(backgroundColor = "#FFF3CD") # Light yellow
+  } else {
+    list(backgroundColor = "#F8D7DA") # Light red
+  }
+}
+
+# Create the reactable with row styles
+reactable(coverage_team, rowStyle = function(index) row_style(index))
+
+
+```
+
+## column 2 {width50%}
+
+```{r, progressplot}
+ggplot(coverage_team, aes(x = Ekipa)) +
+  geom_bar(aes(y = `Total uma-kain vizita`), stat = "identity", fill = "blue", alpha = 0.6) +
+  geom_line(aes(y = `Tarjetu amostra uma-kain`), group = 1, color = "red", linewidth = 1.5) +
+  geom_point(aes(y = `Tarjetu amostra uma-kain`), color = "red", size = 3) +
+  labs(title = "Progress and Coverage by Team",
+       x = "Team",
+       y = "Total households") +
+  theme_minimal()
+
+```
+
+# Grafiku Progressu Tuir Munisipiu {height="70%"}
+
+```{r, computeindicators}
+
+targets <- data.frame(
+  dw_01 = c("Aileu", "Ainaro", "Atauro", "Baucau","Bobonaro","Covalima","Dili", "Ermera","Lautém","Liquica", "Manatuto","Manufahi","Oecusse","Viqueque"),
+  target = c(102, 120, 24, 204,192,174,258,228,150,114,126,108,138,162))
+  
+fcs<- fcs %>%
+  left_join(targets, by = "dw_01")
+
+counts<-fcs %>%
+  group_by(dw_01) %>%
+  summarise(count = n())
+
+coverage <- counts %>%
+  left_join(targets, by = "dw_01") %>%
+  mutate(percentage_coverage = (count / target) * 100)
+
+
+p<-ggplot(coverage, aes(fill = dw_01, x = dw_01, y =percentage_coverage)) +
+              geom_bar(stat = "identity", position = "dodge") +
+              labs(fill = "Municipality", x = "Municipality", y = "Percentage Coverage") +
+              theme_minimal()
+
+p<-p + guides(color = "legend") + theme(legend.position = "bottom")
+ggplotly(p)
+```
+
+# Mapa {height="20%"}
+
+```{r}
+# # Filter out rows with '99' in latitude or longitude
+filtered_fcs <- fcs[!grepl('99', paste(fcs$pr_09, fcs$pr_10)), ]
+
+# # Convert to sf object
+filtered_fcs_sf <- st_as_sf(filtered_fcs, coords = c("pr_10", "pr_09"), crs = 4326)
+
+# # Create a leaflet map
+map <- leaflet() %>%
+addTiles() %>%  # Add default OpenStreetMap map tiles
+addCircleMarkers(
+  data = filtered_fcs_sf,
+  color = 'blue',
+  radius = 3,
+  popup = ~paste("Ekipa:", pr_06, "  Kodigu Enumerador:", pr_03)
+)
+#
+# # Print the mapss
+map
+#
+```
